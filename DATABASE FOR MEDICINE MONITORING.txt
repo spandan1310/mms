@@ -1,0 +1,77 @@
+
+------------------------------------------------------------------------------------------>
+
+
+create table admin(
+admin_id varchar2(10) primary key,
+firstname varchar2(50) not null,
+lastname varchar2(50) not null,
+age int not null,
+gender varchar2(10),
+dob varchar2(10) not null,
+contact varchar2(10) not null,
+alt_contact varchar2(10),
+email varchar2(40) not null,
+password varchar2(10) not null);
+
+------------------------------------------------------------------------------------------>
+
+create table branch_admin(
+branch_admin_id varchar2(10) primary key,
+firstname varchar2(50) not null,
+lastname varchar2(50) not null,
+age int not null,
+gender varchar2(10),
+dob varchar2(10) not null,
+contact varchar2(10) not null,
+alt_contact varchar2(10),
+email varchar2(40) not null,
+branch_name varchar2(50) not null,
+address1 varchar2(100) not null,
+address2 varchar2(100),
+city varchar2(50) not null,
+state varchar2(50) not null,
+zip_code varchar2(10) not null);
+
+
+------------------------------------------------------------------------------------------>
+
+
+create table medicine(
+medicine_id int primary key,
+medicine_descrip varchar2(200) not null,
+quantity int not null,
+cure varchar2(100) not null,
+manufacturing varchar2(50) not null,
+dosage int not null,
+prescribed_for varchar2(1) not null);
+
+
+
+------------------------------------------------------------------------------------------>
+
+
+
+create table branch_admin_request(
+request_id varchar2(8) primary key,
+branch_admin_id varchar2(10) references branch_admin(branch_admin_id),
+request_date varchar2(10) not null,
+other_info varchar2(100),
+admin_process_date varchar2(10),
+admin_response varchar2(1),
+admin_remarks varchar2(300));
+
+
+------------------------------------------------------------------------------------------->
+
+
+
+create table medicine_request(
+id int primary key,
+medicine_id int references medicine(medicine_id),
+request_id varchar2(8) references branch_admin_request(request_id),
+quantity int not null);
+   
+
+
+------------------------------------------------------------------------------------------->
